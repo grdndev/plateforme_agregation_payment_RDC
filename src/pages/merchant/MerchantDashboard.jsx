@@ -22,7 +22,7 @@ import {
     XAxis,
     YAxis,
     CartesianGrid,
-    Tooltip,
+    Tooltip as TooltipBox,
     ResponsiveContainer
 } from 'recharts';
 import { motion } from 'framer-motion';
@@ -189,7 +189,7 @@ const MerchantDashboard = () => {
                                     axisLine={false}
                                     dx={-10}
                                 />
-                                <Tooltip
+                                <TooltipBox
                                     contentStyle={{
                                         backgroundColor: 'var(--bg-deeper)',
                                         borderColor: 'var(--glass-border)',
@@ -573,15 +573,15 @@ const MerchantDashboard = () => {
         }
 
         .divider-line { flex: 1; height: 1px; background: rgba(255, 255, 255, 0.05); }
-        
-        .conv-arrow { 
-            width: 28px; height: 28px; 
-            background: var(--bg-deeper); 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
+
+        .conv-arrow {
+            width: 28px; height: 28px;
+            background: var(--bg-deeper);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--primary);
         }
 
@@ -639,18 +639,18 @@ const MerchantDashboard = () => {
         .alma-table td:last-child { border-right: 1px solid rgba(255, 255, 255, 0.03); border-top-right-radius: var(--radius-md); border-bottom-right-radius: var(--radius-md); }
 
         .ref { font-family: 'Fira Code', monospace; color: var(--primary); font-weight: 600; font-size: 0.85rem; }
-        
+
         .client-info { display: flex; align-items: center; gap: var(--spacing-sm); }
-        
-        .avatar-sm { 
-            width: 32px; height: 32px; 
-            background: var(--bg-deeper); 
+
+        .avatar-sm {
+            width: 32px; height: 32px;
+            background: var(--bg-deeper);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%; 
-            font-size: 0.75rem; 
+            border-radius: 50%;
+            font-size: 0.75rem;
             font-weight: 700;
-            display: flex; 
-            align-items: center; 
+            display: flex;
+            align-items: center;
             justify-content: center;
             color: var(--primary);
         }
@@ -659,7 +659,7 @@ const MerchantDashboard = () => {
         .client-details .phone { font-size: 0.75rem; color: var(--text-gray); opacity: 0.6; }
 
         .date { color: var(--text-gray); font-size: 0.85rem; }
-        
+
         .amount-col { display: flex; flex-direction: column; }
         .net-amount { font-weight: 700; color: var(--text-white); }
         .fee-amount { font-size: 0.75rem; color: var(--text-gray); opacity: 0.6; }
