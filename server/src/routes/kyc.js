@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const KYCController = require('../controllers/kycController');
-const { authenticate } = require('../middleware/auth');
+const { authenticateToken } = require('../middleware/auth');
 const multer = require('multer');
 const path = require('path');
 const crypto = require('crypto');
@@ -43,7 +43,7 @@ const upload = multer({
  * @desc    Get user's KYC status and required documents
  * @access  Private
  */
-router.get('/status', authenticate, KYCController.getStatus);
+router.get('/status', authenticateToken, KYCController.getStatus);
 
 /**
  * @route   POST /api/kyc/upload
@@ -52,7 +52,7 @@ router.get('/status', authenticate, KYCController.getStatus);
  */
 router.post(
     '/upload',
-    authenticate,
+    authenticateToken,
     upload.single('document'),
     KYCController.uploadDocument
 );
@@ -62,20 +62,20 @@ router.post(
  * @desc    Delete a KYC document (only if pending or rejected)
  * @access  Private
  */
-router.delete('/documents/:id', authenticate, KYCController.deleteDocument);
+router.delete('/documents/:id', authenticateToken, KYCController.deleteDocument);
 
 /**
  * @route   PUT /api/kyc/documents/:id/review
  * @desc    Admin: Review and approve/reject document
  * @access  Admin only
  */
-router.put('/documents/:id/review', authenticate, KYCController.reviewDocument);
+router.put('/documents/:id/review', authenticateToken, KYCController.reviewDocument);
 
 /**
  * @route   GET /api/kyc/pending
  * @desc    Admin: Get all pending KYC submissions
  * @access  Admin only
  */
-router.get('/pending', authenticate, KYCController.getPendingSubmissions);
+router.get('/pending', authenticateToken, KYCController.getPendingSubmissions);
 
 module.exports = router;
