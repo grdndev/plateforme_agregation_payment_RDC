@@ -51,6 +51,14 @@ Transaction.init({
             key: 'id'
         }
     },
+    conversionRate_id: {
+        type: DataTypes.UUID,
+        allowNull: true,
+        references: {
+            model: 'conversionRates',
+            key: 'id'
+        }
+    },
 
     // Transaction Identification
     transaction_ref: {
@@ -146,6 +154,7 @@ Transaction.init({
     },
 
     // Conversion Specific
+    // TODO: REMOVE ?
     conversion_from_currency: {
         type: DataTypes.STRING,
         allowNull: true

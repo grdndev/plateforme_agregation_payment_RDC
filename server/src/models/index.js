@@ -3,6 +3,7 @@ const { sequelize } = require('../config/database');
 // Import all models
 const User = require('./User');
 const Wallet = require('./Wallet');
+const ConversionRate = require('./ConversionRate');
 const Transaction = require('./Transaction');
 const LedgerEntry = require('./LedgerEntry');
 const KYCDocument = require('./KYCDocument');
@@ -51,6 +52,16 @@ const defineAssociations = () => {
         as: 'transaction'
     });
 
+    // ConversionRates <-> Transaction (1:N)
+    ConversionRate.hasMany(Transaction, {
+        foreignKey: 'conversionRate_id',
+        as: 'transactions'
+    });
+    Transaction.hasOne(ConversionRate, {
+        foreignKey: 'conversionRate_id',
+        as: 'conversionRate'
+    });
+
     // User <-> KYCDocuments (1:N)
     User.hasMany(KYCDocument, {
         foreignKey: 'user_id',
@@ -95,5 +106,6 @@ module.exports = {
     Transaction,
     LedgerEntry,
     KYCDocument,
-    BankAccount
+    BankAccount,
+    ConversionRate
 };

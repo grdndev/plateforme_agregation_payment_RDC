@@ -202,7 +202,7 @@ $baseURL = 'https://api.almapay.cd/v1';
 
 function initiatePayment() {
     global $apiKey, $baseURL;
-    
+
     $data = [
         'amount' => 100.00,
         'currency' => 'USD',
@@ -210,7 +210,7 @@ function initiatePayment() {
         'order_id' => 'ORDER-123',
         'description' => 'Achat produit X'
     ];
-    
+
     $ch = curl_init($baseURL . '/payments');
     curl_setopt_array($ch, [
         CURLOPT_POST => true,
@@ -221,10 +221,10 @@ function initiatePayment() {
         ],
         CURLOPT_RETURNTRANSFER => true
     ]);
-    
+
     $response = curl_exec($ch);
     curl_close($ch);
-    
+
     return json_decode($response, true);
 }
 
@@ -245,7 +245,7 @@ def initiate_payment():
         'Authorization': f'Bearer {API_KEY}',
         'Content-Type': 'application/json'
     }
-    
+
     data = {
         'amount': 100.00,
         'currency': 'USD',
@@ -253,14 +253,14 @@ def initiate_payment():
         'order_id': 'ORDER-123',
         'description': 'Achat produit X'
     }
-    
+
     response = requests.post(
         f'{BASE_URL}/payments',
         json=data,
         headers=headers
     )
     response.raise_for_status()
-    
+
     return response.json()
 
 if __name__ == '__main__':
@@ -296,13 +296,13 @@ curl -X GET https://api.almapay.cd/v1/wallet/balance \
 
 ### Fonctionnalités
 
-✅ **Gestion Visuelle** : Interface moderne avec état des clés  
-✅ **Génération Rapide** : Créer de nouvelles clés en un clic  
-✅ **Sécurité** : Masquage des clés avec révélation à la demande  
-✅ **Copie Facile** : Bouton de copie avec feedback visuel  
-✅ **Badges Visuels** : Identification claire Sandbox vs Production  
-✅ **Code Multi-Langages** : Exemples Node.js, PHP, Python, cURL  
-✅ **Liens Rapides** : Accès direct à la documentation et ressources  
+✅ **Gestion Visuelle** : Interface moderne avec état des clés
+✅ **Génération Rapide** : Créer de nouvelles clés en un clic
+✅ **Sécurité** : Masquage des clés avec révélation à la demande
+✅ **Copie Facile** : Bouton de copie avec feedback visuel
+✅ **Badges Visuels** : Identification claire Sandbox vs Production
+✅ **Code Multi-Langages** : Exemples Node.js, PHP, Python, cURL
+✅ **Liens Rapides** : Accès direct à la documentation et ressources
 
 ### Sections
 
@@ -328,19 +328,19 @@ curl -X GET https://api.almapay.cd/v1/wallet/balance \
 
 ### Bonnes Pratiques
 
-✅ **Ne jamais exposer** les clés dans le code frontend  
-✅ **Utiliser des variables d'environnement** (.env)  
-✅ **Révoquer immédiatement** toute clé compromise  
-✅ **Rotation régulière** des clés en production  
-✅ **Limiter les permissions** selon les besoins  
+✅ **Ne jamais exposer** les clés dans le code frontend
+✅ **Utiliser des variables d'environnement** (.env)
+✅ **Révoquer immédiatement** toute clé compromise
+✅ **Rotation régulière** des clés en production
+✅ **Limiter les permissions** selon les besoins
 
 ### ⚠️ Anti-Patterns
 
-❌ Commiter les clés dans Git/GitHub  
-❌ Envoyer les clés par email non chiffré  
-❌ Utiliser des clés production pour les tests  
-❌ Partager les clés entre plusieurs projets  
-❌ Logger les clés dans les fichiers de log  
+❌ Commiter les clés dans Git/GitHub
+❌ Envoyer les clés par email non chiffré
+❌ Utiliser des clés production pour les tests
+❌ Partager les clés entre plusieurs projets
+❌ Logger les clés dans les fichiers de log
 
 ### Stockage Sécurisé
 
@@ -430,13 +430,13 @@ Chaque requête API met à jour automatiquement le champ `last_used_at` de la cl
 
 ### Différences Sandbox vs Production
 
-| Fonctionnalité | Sandbox | Production |
-|----------------|---------|-----------|
-| KYC Required | ❌ Non | ✅ Oui |
-| Transactions Réelles | ❌ Non | ✅ Oui |
-| Limites Montants | Aucune | Oui (selon KYC) |
-| Webhooks | Simulés | Réels |
-| Support | Documentation | Email + Téléphone |
+| Fonctionnalité              |   Sandbox       | Production          |
+|-----------------------------|-----------------|---------------------|
+| KYC Required                |   Non           |   Oui               |
+| Transactions Réelles        |   Non           |   Oui               |
+| Limites Montants            |   Aucune        |   Oui (selon KYC)   |
+| Webhooks                    |   Simulés       |   Réels             |
+| Support                     |   Documentation |   Email + Téléphone |
 
 ## 📚 Ressources
 
@@ -467,6 +467,6 @@ Chaque requête API met à jour automatiquement le champ `last_used_at` de la cl
 
 ---
 
-**Version:** 1.0.0  
-**Dernière mise à jour:** Février 2026  
+**Version:** 1.0.0
+**Dernière mise à jour:** Février 2026
 **Support:** developers@almapay.cd

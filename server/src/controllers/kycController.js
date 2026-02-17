@@ -1,9 +1,6 @@
 const { User, KYCDocument } = require('../models');
-const multer = require('multer');
-const path = require('path');
 const fs = require('fs').promises;
 const logger = require('../utils/logger');
-const config = require('../config');
 
 /**
  * KYC Controller
@@ -97,6 +94,7 @@ class KYCController {
             ];
 
             if (!validTypes.includes(document_type)) {
+                await fs.unlink(req.file.path);
                 return res.status(400).json({
                     success: false,
                     message: 'Type de document invalide'
@@ -113,6 +111,7 @@ class KYCController {
             });
 
             if (existingDoc && existingDoc.status === 'approved') {
+                await fs.unlink(req.file.path);
                 return res.status(400).json({
                     success: false,
                     message: 'Un document de ce type est déjà approuvé'
@@ -144,6 +143,9 @@ class KYCController {
             });
 
         } catch (error) {
+            if (req.file) {
+                await fs.unlink(req.file.path);
+            }
             logger.error('KYC document upload error:', error);
             res.status(500).json({
                 success: false,
