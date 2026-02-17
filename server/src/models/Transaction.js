@@ -55,7 +55,7 @@ Transaction.init({
         type: DataTypes.UUID,
         allowNull: true,
         references: {
-            model: 'conversionRates',
+            model: 'conversion_rates',
             key: 'id'
         }
     },
@@ -64,7 +64,7 @@ Transaction.init({
     transaction_ref: {
         type: DataTypes.STRING,
         unique: true,
-        allowNull: false
+        allowNull: true
     },
     external_ref: {
         type: DataTypes.STRING,

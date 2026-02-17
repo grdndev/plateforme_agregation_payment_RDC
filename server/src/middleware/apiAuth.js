@@ -1,4 +1,5 @@
 const { User, Wallet } = require('../models');
+const encryption = require('../utils/encryption');
 const logger = require('../utils/logger');
 
 /**
@@ -19,8 +20,8 @@ const authenticateApiKey = async (req, res, next) => {
         }
 
         // Determine environment (sandbox or production)
-        const isSandbox = apiKey.startsWith('sk_test_');
-        const isProduction = apiKey.startsWith('sk_live_');
+        const isSandbox = apiKey.startsWith('alma_test_sk_');
+        const isProduction = apiKey.startsWith('alma_live_sk_');
 
         if (!isSandbox && !isProduction) {
             return res.status(401).json({
@@ -29,18 +30,18 @@ const authenticateApiKey = async (req, res, next) => {
             });
         }
 
-        // Find user by API key
+        const hash = await encryption.hash(apiKey);
+
         const whereClause = isSandbox
-            ? { api_key_sandbox: apiKey }
-            : { api_key_production: apiKey };
+            ? { api_hash_sandbox: hash }
+            : { api_hash_production: hash };
 
         const user = await User.findOne({
             where: whereClause,
             include: [{
                 model: Wallet,
                 as: 'wallet'
-            }]
-        });
+        }]});
 
         if (!user) {
             return res.status(401).json({

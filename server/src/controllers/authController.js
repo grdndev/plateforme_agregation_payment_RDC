@@ -152,13 +152,8 @@ class AuthController {
                 });
             }
 
-            // Reset login attempts on successful login
-            await user.resetLoginAttempts();
-
             // Update last login
-            user.last_login_at = new Date();
-            user.last_login_ip = req.ip;
-            await user.save();
+            await user.loginSuccess(req.ip);
 
             // 2FA logic
             const isAdmin = ['admin', 'super_admin', 'support'].includes(user.role);
@@ -362,12 +357,10 @@ class AuthController {
                 success: true,
                 data: {
                     sandbox: {
-                        api_key: user.api_key_sandbox,
-                        api_secret: user.api_secret_sandbox
+                        api_key: user.api_key_sandbox
                     },
                     production: user.status === 'active' ? {
-                        api_key: user.api_key_production,
-                        api_secret: user.api_secret_production
+                        api_key: user.api_key_production
                     } : null
                 },
                 hint: user.status !== 'active'
@@ -393,10 +386,11 @@ class AuthController {
             const { environment } = req.body; // 'sandbox' or 'production'
 
             const user = await User.findByPk(req.userId);
+            const api_key = {sandbox: null, production: null};
 
             if (environment === 'sandbox') {
-                user.api_key_sandbox = `sk_test_${encryption.generateToken(32)}`;
-                user.api_secret_sandbox = encryption.generateToken(48);
+                api_key.sandbox = `sk_test_${encryption.generateToken(32)}`;
+                user.api_key_sandbox = api_key.sandbox;
             } else if (environment === 'production') {
                 if (user.status !== 'active') {
                     return res.status(403).json({
@@ -404,8 +398,8 @@ class AuthController {
                         message: 'Compte non actif. Impossible de régénérer les clés de production.'
                     });
                 }
-                user.api_key_production = `sk_live_${encryption.generateToken(32)}`;
-                user.api_secret_production = encryption.generateToken(48);
+                api_key.production = `sk_live_${encryption.generateToken(32)}`;
+                user.api_key_production = api_key.production;
             } else {
                 return res.status(400).json({
                     success: false,
@@ -421,8 +415,7 @@ class AuthController {
                 success: true,
                 message: `Clés ${environment} régénérées avec succès`,
                 data: {
-                    api_key: environment === 'sandbox' ? user.api_key_sandbox : user.api_key_production,
-                    api_secret: environment === 'sandbox' ? user.api_secret_sandbox : user.api_secret_production
+                    api_key: environment === 'sandbox' ? api_key.sandbox : api_key.production
                 },
                 warning: 'Vos anciennes clés ne fonctionneront plus. Mettez à jour votre intégration.'
             });

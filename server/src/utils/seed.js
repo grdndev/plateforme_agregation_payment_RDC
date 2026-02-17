@@ -1,14 +1,14 @@
 /**
  * Database Seed Script
  * Populates database with initial test data
- * 
+ *
  * Usage: npm run seed
  */
 
 require('dotenv').config();
-const { User, Wallet } = require('../src/models');
-const { sequelize } = require('../src/config/database');
-const logger = require('../src/utils/logger');
+const { User, Wallet } = require('../models');
+const { sequelize } = require('../config/database');
+const logger = require('./logger');
 
 const seed = async () => {
     const transaction = await sequelize.transaction();

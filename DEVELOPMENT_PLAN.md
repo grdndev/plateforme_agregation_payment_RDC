@@ -30,16 +30,16 @@
 ## 🚧 **PHASE 2: PAIEMENTS & MOBILE MONEY (0% COMPLÉTÉ)**
 
 ### Fait ✓
+- [x] Modèle Transaction complet
+- [x] Détection automatique opérateur (préfixe)
+- [x] API publique: POST /api/payments
+- [x] API publique: GET /api/payments/:id
 
 ### À Faire
-- [ ] Modèle Transaction complet
 - [ ] Service PaymentProcessor
 - [ ] Adapter M-Pesa (collecte + callback)
 - [ ] Adapter Orange Money (collecte + callback)
 - [ ] Adapter Airtel Money (collecte + callback)
-- [ ] Détection automatique opérateur (préfixe)
-- [ ] API publique: POST /api/payments
-- [ ] API publique: GET /api/payments/:id
 - [ ] Webhooks handlers (M-Pesa, Orange, Airtel)
 - [ ] Système de retry (3 tentatives)
 - [ ] Queue système (Bull + Redis) pour async processing
@@ -50,6 +50,8 @@
 ---
 
 ## 💰 **PHASE 3: WALLET & CONVERSION (0% COMPLÉTÉ)**
+
+### Fait ✓
 
 ### À Faire
 - [ ] Service WalletManager
@@ -70,7 +72,6 @@
 ## 🏦 **PHASE 4: VIREMENTS BANCAIRES (0% COMPLÉTÉ)**
 
 ### À Faire
-- [ ] Modèle WithdrawalRequest
 - [ ] Service BankTransferProcessor
 - [ ] POST /api/wallet/withdraw (initiation)
 - [ ] Génération fichiers virements groupés
@@ -79,6 +80,9 @@
 - [ ] Recréditation wallet en cas de rejet
 - [ ] Notifications statut virement
 - [ ] Tests virements
+
+### A réformer
+- [ ] Modèle WithdrawalRequest
 
 **Estimation**: 6-8 heures
 

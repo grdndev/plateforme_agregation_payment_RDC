@@ -29,6 +29,7 @@ router.get('/ledger/balances', asyncHandler(LedgerController.getBalances));
  * Fund Segregation Admin Routes
  */
 const SegregationController = require('../controllers/segregationController');
+const AdminController = require('../controllers/adminController');
 
 /**
  * @route   POST /api/admin/segregation/approve-funding
@@ -50,6 +51,13 @@ router.post('/segregation/auto-sweep', asyncHandler(SegregationController.trigge
  * @access  Admin
  */
 router.post('/segregation/auto-sweep-all', asyncHandler(SegregationController.triggerAutoSweepAll));
+
+/**
+ * @route   POST /api/admin/merchants/:id/suspend
+ * @desc    Suspend an account
+ * @access  Admin
+ */
+router.post('/merchants/:id/suspend', asyncHandler(AdminController.merchantSuspend));
 
 /**
  * Batch transfer routes

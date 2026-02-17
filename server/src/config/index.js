@@ -175,7 +175,7 @@ module.exports = {
     // Phone Prefixes for Operator Detection
     operatorPrefixes: {
         mpesa: ['081', '082', '083', '084', '085'],
-        orange: ['089', '084', '085'],
-        airtel: ['097', '098', '099']
+        orange_money: ['089', '084', '085'],
+        airtel_money: ['097', '098', '099']
     }
 };

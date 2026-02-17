@@ -44,7 +44,7 @@ ConversionRate.init({
 }, {
     sequelize,
     modelName: 'ConversionRate',
-    tableName: 'conversionRates',
+    tableName: 'conversion_rates',
     indexes: [
         { fields: ['created_at'] }
     ]

@@ -23,10 +23,13 @@ class User extends Model {
         await this.save();
     }
 
-    async resetLoginAttempts() {
+    async loginSuccess(ip) {
         this.login_attempts = 0;
         this.account_locked_until = null;
         this.last_login_attempt = new Date();
+        this.last_login_at = new Date();
+        this.last_login_ip = ip;
+
         await this.save();
     }
 
@@ -36,7 +39,7 @@ class User extends Model {
     }
 
     toSafeObject() {
-        const { password, two_fa_secret, ...safeUser } = this.toJSON();
+        const { password, api_hash_sandbox, api_hash_production, two_fa_secret, ...safeUser } = this.toJSON();
         return safeUser;
     }
 }
@@ -116,18 +119,9 @@ User.init({
             }
         }
     },
-    api_secret_sandbox: {
+    api_hash_sandbox: {
         type: DataTypes.TEXT,
-        allowNull: true,
-        get() {
-            const value = this.getDataValue('api_secret_sandbox');
-            return value ? encryption.decrypt(value) : null;
-        },
-        set(value) {
-            if (value) {
-                this.setDataValue('api_secret_sandbox', encryption.encrypt(value));
-            }
-        }
+        allowNull: true
     },
     api_key_production: {
         type: DataTypes.TEXT,
@@ -142,18 +136,9 @@ User.init({
             }
         }
     },
-    api_secret_production: {
+    api_hash_production: {
         type: DataTypes.TEXT,
-        allowNull: true,
-        get() {
-            const value = this.getDataValue('api_secret_production');
-            return value ? encryption.decrypt(value) : null;
-        },
-        set(value) {
-            if (value) {
-                this.setDataValue('api_secret_production', encryption.encrypt(value));
-            }
-        }
+        allowNull: true
     },
 
     // IP Whitelist
@@ -280,13 +265,21 @@ User.init({
 
             // Generate API keys for sandbox on creation
             if (user.role === 'merchant_owner') {
-                user.api_key_sandbox = `sk_test_${encryption.generateToken(32)}`;
-                user.api_secret_sandbox = encryption.generateToken(48);
+                user.api_key_sandbox = `alma_test_sk_${encryption.generateToken(32)}`;
+                user.api_hash_sandbox = encryption.hash(user.api_key_sandbox);
             }
         },
         beforeUpdate: async (user) => {
             if (user.changed('password')) {
                 user.password = await bcrypt.hash(user.password, config.security.bcryptRounds);
+            }
+
+            if (user.changed('api_key_sandbox')) {
+                user.api_hash_sandbox = encryption.hash(user.api_key_sandbox);
+            }
+
+            if (user.changed('api_key_production')) {
+                user.api_hash_production = encryption.hash(user.api_key_production);
             }
         }
     }

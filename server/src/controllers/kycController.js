@@ -1,4 +1,5 @@
 const { User, KYCDocument } = require('../models');
+const encryption = require('../utils/encryption');
 const fs = require('fs').promises;
 const logger = require('../utils/logger');
 
@@ -395,11 +396,11 @@ class KYCController {
             if (allApproved && user.status === 'pending_validation') {
                 user.status = 'active';
                 user.validated_at = new Date();
+                user.api_key_production = `alma_test_sk_${encryption.generateToken(32)}`;
                 await user.save();
                 logger.info(`User ${userId} KYC approved - activated`);
 
                 // TODO: Send email notification
-                // TODO: Generate production API keys
             }
 
         } catch (error) {

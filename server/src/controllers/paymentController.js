@@ -1,4 +1,5 @@
-const { Transaction, Wallet, User, LedgerEntry } = require('../models');
+const { Op } = require('sequelize');
+const { Transaction } = require('../models');
 const { sequelize } = require('../config/database');
 const PaymentProcessor = require('../services/payment/PaymentProcessor');
 const config = require('../config');
@@ -43,7 +44,7 @@ class PaymentController {
                     user_id: merchant.id,
                     order_id,
                     created_at: {
-                        [sequelize.Op.gte]: new Date(Date.now() - 24 * 60 * 60 * 1000)
+                        [Op.gte]: new Date(Date.now() - 24 * 60 * 60 * 1000)
                     }
                 }
             });
