@@ -146,7 +146,7 @@ $baseURL = 'https://api.almapay.cd/v1';
 // Initier un paiement
 function initiatePayment() {
     global $apiKey, $baseURL;
-    
+
     $data = [
         'amount' => 100.00,
         'currency' => 'USD',
@@ -154,7 +154,7 @@ function initiatePayment() {
         'order_id' => 'ORDER-123',
         'description' => 'Achat produit X'
     ];
-    
+
     $ch = curl_init(\$baseURL . '/payments');
     curl_setopt_array($ch, [
         CURLOPT_POST => true,
@@ -165,11 +165,11 @@ function initiatePayment() {
         ],
         CURLOPT_RETURNTRANSFER => true
     ]);
-    
+
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
-    
+
     if ($httpCode === 200) {
         $result = json_decode($response, true);
         echo "Payment initiated: " . json_encode($result);
@@ -192,12 +192,12 @@ BASE_URL = 'https://api.almapay.cd/v1'
 
 def initiate_payment():
     """Initier un paiement"""
-    
+
     headers = {
         'Authorization': f'Bearer {API_KEY}',
         'Content-Type': 'application/json'
     }
-    
+
     data = {
         'amount': 100.00,
         'currency': 'USD',
@@ -205,7 +205,7 @@ def initiate_payment():
         'order_id': 'ORDER-123',
         'description': 'Achat produit X'
     }
-    
+
     try:
         response = requests.post(
             f'{BASE_URL}/payments',
@@ -213,11 +213,11 @@ def initiate_payment():
             headers=headers
         )
         response.raise_for_status()
-        
+
         result = response.json()
         print('Payment initiated:', result)
         return result
-        
+
     except requests.exceptions.RequestException as error:
         print('Error:', error.response.json() if error.response else str(error))
         raise
@@ -288,7 +288,7 @@ curl -X GET https://api.almapay.cd/v1/wallet/balance \\
                     <div className="section-header">
                         <div>
                             <h3>Clés API</h3>
-                            <p className="text-gray text-sm">
+                            <p className=" text-sm">
                                 Vos clés d'authentification pour accéder à l'API Alma
                             </p>
                         </div>
@@ -307,7 +307,7 @@ curl -X GET https://api.almapay.cd/v1/wallet/balance \\
                             </div>
                         ) : apiKeys.length === 0 ? (
                             <div className="empty-state">
-                                <Key size={48} color="var(--text-gray)" />
+                                <Key size={48} color="var(--)" />
                                 <p>Aucune clé API générée</p>
                                 <button className="btn-primary" onClick={() => generateAPIKey('sandbox')}>
                                     Créer ma première clé
@@ -327,7 +327,7 @@ curl -X GET https://api.almapay.cd/v1/wallet/balance \\
                                             </div>
                                             <div>
                                                 <p className="key-name">{key.name}</p>
-                                                <p className="text-xs text-gray">
+                                                <p className="text-xs ">
                                                     Créée le {new Date(key.created_at).toLocaleDateString('fr-FR')}
                                                 </p>
                                             </div>
@@ -372,7 +372,7 @@ curl -X GET https://api.almapay.cd/v1/wallet/balance \\
                                     </div>
 
                                     <div className="key-meta">
-                                        <span className="text-xs text-gray">
+                                        <span className="text-xs ">
                                             Dernière utilisation: {new Date(key.last_used_at).toLocaleString('fr-FR')}
                                         </span>
                                     </div>
@@ -410,7 +410,7 @@ curl -X GET https://api.almapay.cd/v1/wallet/balance \\
 
                     <div className="code-container">
                         <div className="code-header">
-                            <span className="text-sm text-gray">
+                            <span className="text-sm ">
                                 {codeExamples[selectedLang].label}
                             </span>
                             <button
@@ -544,7 +544,7 @@ curl -X GET https://api.almapay.cd/v1/wallet/balance \\
                     flex: 1;
                     font-family: 'Monaco', 'Menlo', monospace;
                     font-size: 13px;
-                    color: var(--text-gray);
+                    color: var(--);
                     overflow-x: auto;
                 }
 
@@ -560,7 +560,7 @@ curl -X GET https://api.almapay.cd/v1/wallet/balance \\
                     border-radius: var(--radius-sm);
                     cursor: pointer;
                     transition: var(--transition);
-                    color: var(--text-gray);
+                    color: var(--);
                 }
 
                 .btn-icon:hover {
@@ -604,7 +604,7 @@ curl -X GET https://api.almapay.cd/v1/wallet/balance \\
                     background: rgba(255, 255, 255, 0.05);
                     border: 1px solid rgba(255, 255, 255, 0.1);
                     border-radius: var(--radius-sm);
-                    color: var(--text-gray);
+                    color: var(--);
                     cursor: pointer;
                     transition: var(--transition);
                     font-size: 14px;
@@ -692,7 +692,7 @@ curl -X GET https://api.almapay.cd/v1/wallet/balance \\
 
                 .link-desc {
                     font-size: 13px;
-                    color: var(--text-gray);
+                    color: var(--);
                 }
 
                 .empty-state {
@@ -702,7 +702,7 @@ curl -X GET https://api.almapay.cd/v1/wallet/balance \\
                     gap: 16px;
                     padding: 60px 20px;
                     text-align: center;
-                    color: var(--text-gray);
+                    color: var(--);
                 }
             `}</style>
         </div>

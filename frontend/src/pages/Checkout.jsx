@@ -197,11 +197,11 @@ const Checkout = () => {
   );
 
   return (
-    <div className="checkout-container">
-      <div className="checkout-card">
-        <div className="brand-header">
-          <div className="logo">
-            <Zap size={24} fill="var(--primary)" color="var(--primary)" />
+    <div className="min-h-screen bg-[radial-gradient(circle_at_15%_15%,_rgba(243,156,18,0.08)_0%,_transparent_50%),radial-gradient(circle_at_85%_85%,_rgba(52,152,219,0.06)_0%,_transparent_50%)] flex items-center justify-center p-md">
+      <div className="bg-glass backdrop-blur-[20px] border border-glass-border rounded-lg p-xl shadow-lg w-full max-w-[420px]">
+        <div className="brand-header flex items-center justify-center gap-sm mb-xl">
+          <div className="logo w-11 h-11 bg-primary/12 rounded-md flex items-center justify-center shadow-[0_0_20px_rgba(243,156,18,0.2)]">
+            <Zap size={24} className="text-primary" />
           </div>
           <div className="brand-text">
             <span className="brand-name">ALMA</span>
@@ -220,7 +220,7 @@ const Checkout = () => {
         .checkout-container {
           min-height: 100vh;
           background: var(--bg-dark);
-          background-image: 
+          background-image:
             radial-gradient(circle at 15% 15%, rgba(243, 156, 18, 0.08) 0%, transparent 50%),
             radial-gradient(circle at 85% 85%, rgba(52, 152, 219, 0.06) 0%, transparent 50%);
           display: flex;
@@ -342,7 +342,7 @@ const Checkout = () => {
 
         .label {
           font-size: 0.75rem;
-          color: var(--text-gray);
+          color: var(--);
           opacity: 0.6;
         }
 
@@ -361,7 +361,7 @@ const Checkout = () => {
         .payment-form label {
           font-size: 0.85rem;
           font-weight: 600;
-          color: var(--text-gray);
+          color: var(--);
           margin-bottom: -8px;
         }
 
@@ -388,7 +388,7 @@ const Checkout = () => {
         }
 
         .input-group .icon {
-          color: var(--text-gray);
+          color: var(--);
           opacity: 0.4;
           flex-shrink: 0;
         }
@@ -406,7 +406,7 @@ const Checkout = () => {
         }
 
         .input-group input::placeholder {
-          color: var(--text-gray);
+          color: var(--);
           opacity: 0.3;
         }
 
@@ -445,7 +445,7 @@ const Checkout = () => {
 
         .supported-operators .label {
           font-size: 0.75rem;
-          color: var(--text-gray);
+          color: var(--);
           opacity: 0.5;
         }
 
@@ -513,7 +513,7 @@ const Checkout = () => {
           justify-content: center;
           gap: 8px;
           font-size: 0.75rem;
-          color: var(--text-gray);
+          color: var(--);
           opacity: 0.5;
           margin-top: 8px;
         }
@@ -552,7 +552,7 @@ const Checkout = () => {
 
         .status-message {
           font-size: 0.95rem;
-          color: var(--text-gray);
+          color: var(--);
           margin-bottom: var(--spacing-xs);
         }
 
@@ -610,7 +610,7 @@ const Checkout = () => {
         }
 
         .detail-row span {
-          color: var(--text-gray);
+          color: var(--);
         }
 
         .detail-row strong {

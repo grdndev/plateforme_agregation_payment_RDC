@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Tooltip from '../../components/common/Tooltip';
 import Alert from '../../components/common/Alert';
 
-const CompliancePage = () => {
+export default function CompliancePage() {
     const [kycStatus, setKycStatus] = useState(null);
     const [loading, setLoading] = useState(true);
     const [uploadingDoc, setUploadingDoc] = useState(null);
@@ -292,7 +292,7 @@ const CompliancePage = () => {
                                 <HelpCircle size={16} className="opacity-40 cursor-help" />
                             </Tooltip>
                         </div>
-                        <span className="text-xs text-gray">PDF, JPG, PNG (Max 5MB)</span>
+                        <span className="text-xs ">PDF, JPG, PNG (Max 5MB)</span>
                     </div>
 
                     {missingCount > 0 && (
@@ -325,7 +325,7 @@ const CompliancePage = () => {
                                                     {badge.label}
                                                 </span>
                                                 {docReq.document && (
-                                                    <span className="text-xs text-gray">
+                                                    <span className="text-xs ">
                                                         {new Date(docReq.document.created_at).toLocaleDateString('fr-FR')}
                                                     </span>
                                                 )}
@@ -408,11 +408,9 @@ const CompliancePage = () => {
 
                 .badge-neutral {
                     background: rgba(255, 255, 255, 0.05);
-                    color: var(--text-gray);
+                    color: var(--);
                 }
             `}</style>
         </div>
     );
 };
-
-export default CompliancePage;

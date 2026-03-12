@@ -120,7 +120,7 @@ window.location.href = payment.checkout_url;
                         </Tooltip>
                         <button className="btn-add">Configurer</button>
                     </div>
-                    <p className="text-gray text-sm mb-4">Recevez des notifications en temps réel pour chaque événement (paiement réussi, échec, etc.).</p>
+                    <p className=" text-sm mb-4">Recevez des notifications en temps réel pour chaque événement (paiement réussi, échec, etc.).</p>
                     <div className="input-group-helper mb-4 italic">
                         Guidage : Votre URL doit être accessible publiquement et supporter HTTPS.
                     </div>
@@ -199,17 +199,17 @@ window.location.href = payment.checkout_url;
         }
 
         .subtitle {
-            color: var(--text-gray);
+            color: var(--);
             font-size: 1.1rem;
             margin-top: 4px;
         }
 
-        .integration-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: var(--spacing-md); 
+        .integration-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
         }
-        
+
         .env-toggle {
           display: flex;
           background: rgba(255, 255, 255, 0.05);
@@ -223,8 +223,8 @@ window.location.href = payment.checkout_url;
         .env-toggle span.active { background: var(--primary); color: white; }
 
         .key-container { margin-top: var(--spacing-md); }
-        .key-container label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-gray); margin-bottom: 8px; }
-        
+        .key-container label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--); margin-bottom: 8px; }
+
         .key-box {
           display: flex;
           justify-content: space-between;
@@ -244,19 +244,19 @@ window.location.href = payment.checkout_url;
 
         .key-text { color: var(--primary); font-size: 0.95rem; }
         .key-actions { display: flex; gap: var(--spacing-sm); }
-        
-        .action-icon { 
-            background: transparent; 
-            border: none; 
-            color: var(--text-gray); 
+
+        .action-icon {
+            background: transparent;
+            border: none;
+            color: var(--);
             opacity: 0.5;
-            cursor: pointer; 
+            cursor: pointer;
             padding: 4px;
             transition: var(--transition);
         }
-        
-        .action-icon:hover { 
-            color: var(--primary); 
+
+        .action-icon:hover {
+            color: var(--primary);
             opacity: 1;
             transform: scale(1.1);
         }
@@ -268,18 +268,18 @@ window.location.href = payment.checkout_url;
             opacity: 0.8;
         }
 
-        .btn-add { 
-            background: rgba(243, 156, 18, 0.1); 
-            border: 1px solid var(--primary); 
-            color: var(--primary); 
-            padding: 6px 16px; 
-            border-radius: var(--radius-md); 
-            font-size: 0.85rem; 
-            font-weight: 600; 
+        .btn-add {
+            background: rgba(243, 156, 18, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: var(--radius-md);
+            font-size: 0.85rem;
+            font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
         }
-        
+
         .btn-add:hover {
             background: var(--primary);
             color: white;
@@ -299,7 +299,7 @@ window.location.href = payment.checkout_url;
         .webhook-info { display: flex; flex-direction: column; gap: 4px; }
         .webhook-url { font-size: 0.9rem; color: var(--text-white); font-weight: 500; }
         .webhook-meta { display: flex; align-items: center; gap: 8px; }
-        
+
         .status-dot { width: 8px; height: 8px; border-radius: 50%; }
         .status-dot.success { background: var(--success); box-shadow: 0 0 8px var(--success); }
 
@@ -320,7 +320,7 @@ window.location.href = payment.checkout_url;
 
         .btn-text:hover { opacity: 1; text-decoration: underline; }
 
-        .language-tabs { display: flex; gap: var(--spacing-md); font-size: 0.9rem; color: var(--text-gray); font-weight: 600; }
+        .language-tabs { display: flex; gap: var(--spacing-md); font-size: 0.9rem; color: var(--); font-weight: 600; }
         .language-tabs span { cursor: pointer; padding: 4px 0; transition: var(--transition); position: relative; }
         .language-tabs span.active { color: var(--primary); }
         .language-tabs span.active::after {
@@ -334,10 +334,10 @@ window.location.href = payment.checkout_url;
             border-radius: 2px;
         }
 
-        .snippet-container { 
-          position: relative; 
-          background: #05070A; 
-          padding: 1.5rem; 
+        .snippet-container {
+          position: relative;
+          background: #05070A;
+          padding: 1.5rem;
           border-radius: var(--radius-lg);
           border: 1px solid rgba(255, 255, 255, 0.05);
           margin-top: var(--spacing-md);
@@ -345,7 +345,7 @@ window.location.href = payment.checkout_url;
         }
 
         .snippet-container pre { margin: 0; color: #E2E8F0; font-size: 0.9rem; line-height: 1.7; }
-        
+
         .copy-snippet {
           position: absolute;
           top: 1rem;
@@ -366,13 +366,13 @@ window.location.href = payment.checkout_url;
         .copy-snippet:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--primary); }
 
         .text-sm { font-size: 0.85rem; }
-        .text-xs { font-size: 0.75rem; color: var(--text-gray); opacity: 0.6; }
+        .text-xs { font-size: 0.75rem; color: var(--); opacity: 0.6; }
         .flex { display: flex; }
         .items-center { align-items: center; }
         .gap-2 { gap: 8px; }
         .mb-4 { margin-bottom: 1rem; }
         .mt-4 { margin-top: 1rem; }
-        
+
         @media (max-width: 1024px) {
             .integration-grid { grid-template-columns: 1fr; }
         }

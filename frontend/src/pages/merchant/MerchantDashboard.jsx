@@ -1,8 +1,5 @@
-import React from 'react';
 import {
-    ArrowUpRight,
-    ArrowDownLeft,
-    RefreshCcw,
+    ArrowUpRight, RefreshCcw,
     Wallet,
     TrendingUp,
     CreditCard,
@@ -37,7 +34,7 @@ const data = [
     { name: 'Dim', income: 3490, volume: 4300 },
 ];
 
-const MerchantDashboard = () => {
+export default function MerchantDashboard() {
     return (
         <div className="dashboard-container animate-slide-up">
             <header className="page-header">
@@ -695,5 +692,3 @@ const MerchantDashboard = () => {
         </div>
     );
 };
-
-export default MerchantDashboard;

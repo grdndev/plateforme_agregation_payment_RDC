@@ -11,7 +11,7 @@
   --bg-deeper: #16213e;
   /* Bleu Très Foncé */
   --text-white: #ffffff;
-  --text-gray: #ecf0f1;
+  --: #ecf0f1;
   /* Gris Clair */
 
   /* Status Colors */
@@ -105,7 +105,7 @@ h3 {
 small {
   font-size: 12px;
   font-weight: 500;
-  color: var(--text-gray);
+  color: var(--);
 }
 
 code,
@@ -387,7 +387,7 @@ pre {
 }
 
 .stat-label {
-  color: var(--text-gray);
+  color: var(--);
   font-size: 14px;
   font-weight: 500;
 }
@@ -515,7 +515,7 @@ pre {
 
 .input-group-helper {
   font-size: 12px;
-  color: var(--text-gray);
+  color: var(--);
   opacity: 0.6;
   margin-top: 4px;
   display: flex;
