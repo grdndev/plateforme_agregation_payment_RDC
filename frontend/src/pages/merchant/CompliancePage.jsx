@@ -206,8 +206,8 @@ export default function CompliancePage() {
 
     if (loading) {
         return (
-            <div className="compliance-page flex items-center justify-center min-vh-100">
-                <Loader className="spin" size={32} color="var(--primary)" />
+            <div>
+                <Loader size={32} color="var(--primary)" />
             </div>
         );
     }
@@ -216,24 +216,27 @@ export default function CompliancePage() {
     const missingCount = kycStatus.required_documents.filter(doc => !doc.submitted).length;
 
     return (
-        <div className="compliance-page animate-slide-up">
-            <header className="page-header">
-                <div className="header-content">
-                    <div className="header-badge">
-                        <Shield color="var(--primary)" size={24} />
-                    </div>
-                    <div>
+        <div>
+            <header className="flex flex-col gap-2 mb-4">
+                <div className="flex flex-col gap-2">
+                    <div className="flex font-black gap-3 text-3xl items-center">
+                        <Shield size={36} />
                         <h1>Conformité & Vérification KYC/KYB</h1>
-                        <p className="subtitle">
-                            Soumettez vos documents pour activer le mode Production et débloquer les retraits.
-                        </p>
                     </div>
                 </div>
                 <div className={`status-badge ${kycStatus.user_status === 'active' ? 'success' : 'warning'}`}>
                     {kycStatus.user_status === 'active' ? (
                         <><CheckCircle2 size={16} /> Compte Activé</>
                     ) : (
-                        <><Clock size={16} /> {kycStatus.user_status === 'pending_validation' ? 'Validation en cours' : 'Action requise'}</>
+                        <>
+                            <div className="flex items-center gap-2 text-gray-400">
+                                <Clock size={16} />
+                                <span>
+                                    {kycStatus.user_status === 'pending_validation' ? 'Validation en cours' : 'Action requise'}
+                                </span>
+                            </div>
+                            <p>Soumettez vos documents pour activer le mode Production et débloquer les retraits.</p>
+                        </>
                     )}
                 </div>
             </header>
@@ -248,30 +251,30 @@ export default function CompliancePage() {
                 </motion.div>
             )}
 
-            <div className="compliance-grid">
+            <div>
                 {/* Progress Section */}
-                <section className="steps-card card">
-                    <div className="section-header">
+                <section>
+                    <div>
                         <h3>Progression KYC</h3>
-                        <span className="progress-text">{kycStatus.completion_percentage}% Complété</span>
+                        <span>{kycStatus.completion_percentage}% Complété</span>
                     </div>
-                    <div className="progress-bar-container">
+                    <div>
                         <motion.div
-                            className="progress-bar"
+
                             initial={{ width: 0 }}
                             animate={{ width: `${kycStatus.completion_percentage}%` }}
                             transition={{ duration: 0.8, ease: 'easeOut' }}
                         />
                     </div>
-                    <div className="steps-list">
+                    <div>
                         {steps.map((step, i) => (
                             <div key={i} className={`step-item ${step.status}`}>
                                 <div className={`step-icon-wrapper ${step.status}`}>
                                     {step.icon}
                                 </div>
-                                <div className="step-content">
-                                    <p className="step-title">{step.title}</p>
-                                    <p className="step-status-text">
+                                <div>
+                                    <p>{step.title}</p>
+                                    <p>
                                         {step.status === 'completed' ? 'Terminé' :
                                             step.status === 'pending' ? 'En cours' :
                                                 step.status === 'waiting' ? 'En attente' : 'Action requise'}
@@ -283,16 +286,16 @@ export default function CompliancePage() {
                 </section>
 
                 {/* Documents Upload Section */}
-                <section className="documents-upload card">
-                    <div className="section-header">
-                        <div className="flex items-center gap-2">
-                            <FileText size={20} className="text-primary" />
+                <section>
+                    <div>
+                        <div>
+                            <FileText size={20} />
                             <h3>Documents Requis</h3>
                             <Tooltip text="Ces documents sont nécessaires pour valider l'existence légale de votre entreprise.">
-                                <HelpCircle size={16} className="opacity-40 cursor-help" />
+                                <HelpCircle size={16} />
                             </Tooltip>
                         </div>
-                        <span className="text-xs ">PDF, JPG, PNG (Max 5MB)</span>
+                        <span>PDF, JPG, PNG (Max 5MB)</span>
                     </div>
 
                     {missingCount > 0 && (
@@ -302,30 +305,30 @@ export default function CompliancePage() {
                         />
                     )}
 
-                    <div className="doc-list">
+                    <div>
                         {kycStatus.required_documents.map((docReq) => {
                             const badge = getStatusBadge(docReq.status);
                             const isUploading = uploadingDoc === docReq.type;
 
                             return (
                                 <div key={docReq.type} className={`doc-item ${docReq.status}`}>
-                                    <div className="doc-meta">
+                                    <div>
                                         <div className={`doc-icon-bg ${docReq.status}`}>
                                             <FileText size={18} />
                                         </div>
-                                        <div className="flex-1">
-                                            <div className="flex items-center gap-1">
-                                                <p className="doc-name">{getDocumentLabel(docReq.type)}</p>
+                                        <div>
+                                            <div>
+                                                <p>{getDocumentLabel(docReq.type)}</p>
                                                 <Tooltip text={getDocumentHint(docReq.type)}>
-                                                    <HelpCircle size={14} className="opacity-40 cursor-help" />
+                                                    <HelpCircle size={14} />
                                                 </Tooltip>
                                             </div>
-                                            <div className="flex items-center gap-2">
+                                            <div>
                                                 <span className={`badge ${badge.className}`}>
                                                     {badge.label}
                                                 </span>
                                                 {docReq.document && (
-                                                    <span className="text-xs ">
+                                                    <span>
                                                         {new Date(docReq.document.created_at).toLocaleDateString('fr-FR')}
                                                     </span>
                                                 )}
@@ -333,12 +336,12 @@ export default function CompliancePage() {
                                         </div>
                                     </div>
 
-                                    <div className="doc-actions">
+                                    <div>
                                         {docReq.submitted ? (
                                             <>
                                                 {docReq.status === 'pending' || docReq.status === 'rejected' ? (
                                                     <button
-                                                        className="btn-icon-small"
+
                                                         onClick={() => handleDeleteDocument(docReq.document.id)}
                                                         title="Supprimer"
                                                     >
@@ -346,11 +349,11 @@ export default function CompliancePage() {
                                                     </button>
                                                 ) : null}
                                                 {docReq.status === 'approved' && (
-                                                    <CheckCircle2 size={20} className="text-success" />
+                                                    <CheckCircle2 size={20} />
                                                 )}
                                             </>
                                         ) : (
-                                            <label className="btn-upload">
+                                            <label>
                                                 <input
                                                     type="file"
                                                     accept=".pdf,.jpg,.jpeg,.png"
@@ -362,7 +365,7 @@ export default function CompliancePage() {
                                                     disabled={isUploading}
                                                 />
                                                 {isUploading ? (
-                                                    <><Loader className="spin" size={16} /> Upload...</>
+                                                    <><Loader size={16} /> Upload...</>
                                                 ) : (
                                                     <><Upload size={16} /> Charger</>
                                                 )}

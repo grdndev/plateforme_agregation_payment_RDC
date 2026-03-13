@@ -28,7 +28,7 @@ const TopNav = ({ onMenuClick }) => {
       </div>
 
       <div className="flex items-center gap-4 px-4">
-        <div className="mr-8 px-4 py-1 border-success/30 bg-success/10 rounded-full border-1 flex items-center gap-2" >
+        <div className="mr-8 px-4 py-1 border-success/30 bg-success/10 rounded-full border-1 flex items-center gap-2">
           <span className="text-gray-300 rounded-full w-4 h-4 inline-block bg-radial from-success via-success to-success/30 to-60% animate-pulse">&nbsp;</span>
           <span className="text-gray-300" >Statut Système:</span>
           <span className="text-green-500" >Opérationnel</span>

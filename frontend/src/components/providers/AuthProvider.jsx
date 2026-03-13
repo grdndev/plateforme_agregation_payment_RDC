@@ -4,6 +4,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 
 export default function AuthProvider() {
     const auth = provideAuth();
+
     return <AuthContext.Provider value={auth}>
         <Outlet />
     </AuthContext.Provider>;
