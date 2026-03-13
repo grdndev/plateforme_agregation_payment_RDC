@@ -337,7 +337,7 @@ export default function MerchantDashboard() {
                 </div>
             </section>
 
-            <style jsx>{`
+            <style>{`
         .dashboard-container {
             max-width: 1400px;
             margin: 0 auto;

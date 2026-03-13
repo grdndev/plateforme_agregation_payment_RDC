@@ -9,9 +9,14 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import ErrorPage from './pages/ErrorPage';
 import AuthenticatePage from './pages/auth/AuthenticatePage';
 import RegisterPage from './pages/auth/RegisterPage';
+import AuthProvider from './components/providers/AuthProvider';
+import ProtectionProvider from './components/providers/ProtectionProvider';
 
-const router = createBrowserRouter([
-  {
+const router = createBrowserRouter([{
+  element: <AuthProvider />,
+  children: [{
+    element: <ProtectionProvider />,
+    children: [{
     path: "/",
     element: <RootLayout />,
     errorElement: <ErrorPage />,
@@ -35,6 +40,7 @@ const router = createBrowserRouter([
         path: "/admin",
         element: <AdminDashboard />
     }]
+  }]
   },
   {
     path: "/login",
@@ -43,8 +49,8 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <RegisterPage />
-  }
-]);
+  }]
+}]);
 
 function App() {
   return <RouterProvider router={router} />;

@@ -1,20 +1,20 @@
-import React from 'react';
 import {
   LayoutDashboard,
   ArrowLeftRight,
   Wallet,
   Users,
   Settings,
-  ShieldCheck,
-  HelpCircle,
-  LogOut,
+  ShieldCheck, LogOut,
   ChevronRight,
   Zap
 } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { X } from 'lucide-react';
+import { useAuth } from '../../hooks/useAuth';
+import { getRoleName } from '../../utils/enums';
 
 const Sidebar = ({ isOpen, onClose }) => {
+  const { logout, user } = useAuth();
   const menuItems = [
     { icon: <LayoutDashboard size={20} />, label: 'Tableau de bord', path: '/' },
     { icon: <ArrowLeftRight size={20} />, label: 'Transactions', path: '/transactions' },
@@ -74,16 +74,18 @@ const Sidebar = ({ isOpen, onClose }) => {
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-white font-bold text-sm shadow-md">JD</div>
           <div>
-            <p className="text-sm font-semibold text-white m-0">Jean Dupont</p>
-            <p className="text-xs text-gray-500 opacity-70 m-0">Propriétaire</p>
+            <p className="text-sm font-semibold text-white m-0">{user?.firstname ?? "-"} {user?.lastname ?? "-"}</p>
+            <p className="text-xs text-gray-500 opacity-70 m-0">{getRoleName(user?.role ?? "")}</p>
           </div>
         </div>
-        <button className="bg-transparent border-none text-white opacity-50 cursor-pointer transition-transform duration-200 hover:text-error hover:opacity-100 hover:scale-110" title="Déconnexion">
+        <button
+          className="bg-transparent border-none text-white opacity-50 cursor-pointer transition-transform duration-200 hover:text-error hover:opacity-100 hover:scale-110"
+          title="Déconnexion"
+          onClick={logout}
+          >
           <LogOut size={18} />
         </button>
       </div>
-
-
     </aside>
   );
 };
